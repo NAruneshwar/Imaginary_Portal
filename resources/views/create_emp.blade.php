@@ -53,12 +53,13 @@
                     @enderror
                 </div>
             </div>
+        </div>
         <div class="col-8 offset-2">
             <div class="form-group row">
-                <label for="workingfrom" class="col-md-4 col-form-label text-md-right">{{ __('workingfrom') }}</label>
+                <label for="workingfrom"  class="col-md-4 col-form-label text-md-right">{{ __('workingfrom') }}</label>
 
                 <div class="col-md-6">
-                    <input id="workingfrom" type="number" class="form-control @error('workingfrom') is-invalid @enderror" 
+                    <input id="workingfrom" min= "1900" max = "2020" type="number" class="form-control @error('workingfrom') is-invalid @enderror" 
                     name="workingfrom" value="{{ old('workingfrom') }}" required autocomplete="workingfrom" autofocus>
 
                     @error('workingfrom')
@@ -78,10 +79,22 @@
                     <strong>{{ $image }}</strong>
                 </span>
             @enderror
-    </div>
+        </div>
         <div class="row pt-5 col-8 offset-5">
+        <div id = "btn1" class="btn btn-secondary " onClick = "add_past();"> Add past experience</div>
         <button class="btn btn-primary "> Add the new user</button>
         </div>
+        <div>
+
+        <div>
     </form>
 </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+function add_past()
+{    
+    alert("Hi");
+}
+
+</script>

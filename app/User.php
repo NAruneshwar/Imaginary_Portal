@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function emp_users()
     {
-        return $this->hasMany(Emp_user::class);
+        return $this->hasMany(emp_user::class);
     }
 }

@@ -2,27 +2,30 @@
 
 @section('content')
 <div class="container">
+<form action="" enctype="multipart/form-data" method="post">
     <div class="row justify-content-center">
         <div class="row" allign="center">
             <div class="col3 p-5">
-                <img src="/images/tom.jpg" width="200" height="200"></img>
+                <img src="/storage/{{$cur_res->img_path}}" width="200" height="200"></img>
             </div>
-            <div class="col6 pt-5">
-                <div class="pt-1">Name: {{$cur_res->name}}</div>
-                <div class="pt-1">Current Employer: {{$cur_res->org_name}}</div>
-                <div class="pt-1">Job Title: {{$cur_res->name}}</div>
-                
-                @foreach($old_res as $item)
-                { ?>
-                    <div class="pt-1">Job History:
-                        <div>Company Name: {{$item->org_name}} <div>          
-                        <div class="pl-4">Start Date: {{$item->fdate}}</div>
-                        <div class="pl-4">End Date: {{$item->edate}}</div>
-                    </div>
-                @foreach
+                <div class="col6 pt-5">
+                    <div class="pt-1">Name: {{$cur_res->name}}</div>
+                    <div class="pt-1">Current Employer: {{$cur_res->org_name}}</div>
+                    <div class="pt-1">Job Title: {{$cur_res->name}}</div>
+                    
+                    @foreach($old_res as $job)
+                    
+                        <div class="pt-1">Job History:
+                            <div>Company Name: {{$job->org_name}} <div>          
+                            <div class="pl-4">Start Date: {{$job->fdate}}</div>
+                            <div class="pl-4">End Date: {{$job->edate}}</div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+        <button class="btn btn-danger " > Delete the current user</button>
     </div>
+</form>
 </div>
 @endsection

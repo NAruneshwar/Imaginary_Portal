@@ -3,24 +3,30 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <a href="/new_emp/create">Add new employee details </a>
+    </div>
+    @foreach($all_users as $eachuser)
+    <div class="row justify-content-left">
         <div class="row" allign="center">
             <div class="col3 p-5">
-                <img src="/images/tom-2.jpg" width="200" height="200"></img>
+               <a href="/emp_users/{{$eachuser->u_id}}">
+                    <img src="/storage/{{($eachuser->img_path!='NULL') ? $eachuser->img_path: 'Images/srVlseUJgMZVGUsiYA6CLHzNK71YWyX7ZzMx8WxJ.png'}}" width="200" height="200"></img>
+                </a>
             </div>
             <div class="col6 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="pt-1">Name: Arun</div>
-                    <a style = "text-allign:right;" href="#">edit the details </a>
+                <div class="pt-1">Name: {{$eachuser->name}}</div>
+                
                 </div>
-                <div class="pt-1">Current Employer: SERC</div>
-                <div class="pt-1">Job Title: GA</div>
-                <div class="pt-1">Job History:
-                    <div>Company Name: Winnou <div>          
-                    <div class="pl-4">Start Date: May 2018</div>
-                    <div class="pl-4">End Date: Dec 2019</div>
-                </div>
+                <div class="pt-1">Current Employer: {{$eachuser->org_name}}</div>
+                <div class="pt-1">Job Title: {{$eachuser->jobtitle}}</div>   
+                <div class="pt-1">Working From: {{$eachuser->fdate}}</div> 
+                <div class="pt-4">
+                <a href="/emp_users/{{$eachuser->u_id}}/edit">edit the details </a>    
+                </div>         
             </div>
         </div>
     </div>
+    @endforeach
 </div>
 @endsection

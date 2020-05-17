@@ -22,7 +22,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $all_users = \DB::table('emp_users')->get();
+          
+        return view('home', [
+            'all_users' => $all_users]);
     }
 }
