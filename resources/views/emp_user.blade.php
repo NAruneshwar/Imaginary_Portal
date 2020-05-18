@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-<form action="" enctype="multipart/form-data" method="post">
+<form action="delete/{{$cur_res->u_id}}" enctype="multipart/form-data" method="post">
+    @csrf
     <div class="row justify-content-center">
         <div class="row" allign="center">
             <div class="col3 p-5">

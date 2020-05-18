@@ -1,6 +1,8 @@
 @extends('layouts.app')
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 @section('content')
+
 <div class="container">
     <form action="/emp_users/{{$cur_res->u_id}}" enctype="multipart/form-data" method="post">
     @csrf
@@ -78,6 +80,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="row col-8 offset-5">
                 <label for="image" class="col-md-4 col-form-label">Upload Image (Optional)</label>
                 <input type="file" value="{{$cur_res->img_path}}" class= "form-control-file" id="image" name="image">
@@ -92,8 +95,20 @@
             <div id = "btn1" class="btn btn-secondary " onClick = "add_past();"> Add past experience</div>
             <button class="btn btn-primary "> Edit the current user</button>
             </div>
+            <tbody>
+        </tbody>
         </div>
+        
     </form>
   
 </div>
+
 @endsection
+
+<script type="text/javascript">
+    function add_past(){
+        var extend = '<div>wtf</div>';
+        
+            $('tbody').append(extend);
+    }    
+</script>

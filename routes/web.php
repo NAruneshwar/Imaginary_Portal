@@ -30,3 +30,7 @@ Route::post('/new_emp','emp_userController@store');
 Route::get('/emp_users/{user}/edit','emp_userController@edit_user');
 
 Route::patch('/emp_users/{user}', 'emp_userController@update');
+
+Route::post('/emp_users/delete/{user}', 'emp_userController@delete');
+
+Route::get('/WPAPI','APIController@api_call');

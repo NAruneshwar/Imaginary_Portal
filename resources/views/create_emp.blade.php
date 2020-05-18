@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 @section('content')
 <div class="container">
@@ -70,6 +71,9 @@
                 </div>
             </div>
         </div>
+        <div id="temp1">
+            
+            </div>
         <div class="row col-8 offset-5">
             <label for="image" class="col-md-4 col-form-label">Upload Image (Optional)</label>
             <input type="file", class= "form-control-file" id="image" name="image">
@@ -79,22 +83,53 @@
                     <strong>{{ $image }}</strong>
                 </span>
             @enderror
+        
         </div>
-        <div class="row pt-5 col-8 offset-5">
-        <div id = "btn1" class="btn btn-secondary " onClick = "add_past();"> Add past experience</div>
-        <button class="btn btn-primary "> Add the new user</button>
-        </div>
-        <div>
-
-        <div>
+            <div class="row pt-5 col-8 offset-5">
+            <div id = "btn1" class="btn btn-secondary "> Add past experience</div>
+            <button class="btn btn-primary "> Add the new user</button>
+            </div>
+        <input type="hidden" id ="counter" name="counter" value = "0"></div>
     </form>
 </div>
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-function add_past()
-{    
-    alert("Hi");
-}
+<script>
+$(document).ready(function(){
+    var iter = 1;
+  $("#btn1").click(function(){
+    iter++;
+    var extend ='<div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('jobtitle') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="jobtitle" type="text"  name="jobtitle'+(iter-1).toString()+'"  required autocomplete="jobtitle" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="workingfrom" class="col-md-4 col-form-label text-md-right">{{ __('workingfrom') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="workingfrom" type="number" min= "1900" max = "2020" name="workingfrom'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="workedtill" class="col-md-4 col-form-label text-md-right">{{ __('workedtill') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="workedtill" type="number" min= "1900" max = "2020" name="workedtill'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '</div> <div id= "temp'+iter+'"</div>';
+            var tag ='temp'+(iter-1).toString();
+            document.getElementById(tag).innerHTML= extend;
+            var count = document.getElementById('counter');
+            count.value = (iter-1).toString();
+        });
+});
 
 </script>

@@ -104,4 +104,11 @@ class emp_userController extends Controller
 
         return redirect('/home');
     }
+
+    public function delete($user)
+    {
+        $deleted = \DB::table('emp_users')->where('u_id',$user)->delete();
+        $deleted_old_jobs = \DB::table('past_histories')->where('u_id',$user)->delete();
+        return redirect('/home');
+    }
 }
