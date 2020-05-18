@@ -17,6 +17,7 @@ class CreatePastHistoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('u_id',5);
             $table->string('org_name',25);
+            $table->string('jobtitle',25);
             $table->year('fdate');
             $table->year('edate');
 

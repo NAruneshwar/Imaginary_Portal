@@ -25,7 +25,7 @@
         </div>
         <div class="col-8 offset-2">
             <div class="form-group row">
-                <label for="currentemployer" class="col-md-4 col-form-label text-md-right">{{ __('currentemployer') }}</label>
+                <label for="currentemployer" class="col-md-4 col-form-label text-md-right">{{ __('Current Employer') }}</label>
 
                 <div class="col-md-6">
                     <input id="currentemployer" type="text" class="form-control @error('currentemployer') is-invalid @enderror" 
@@ -41,7 +41,7 @@
         </div>
         <div class="col-8 offset-2">
             <div class="form-group row">
-                <label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('jobtitle') }}</label>
+                <label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('Job Title') }}</label>
 
                 <div class="col-md-6">
                     <input id="jobtitle" type="text" class="form-control @error('jobtitle') is-invalid @enderror" 
@@ -57,7 +57,7 @@
         </div>
         <div class="col-8 offset-2">
             <div class="form-group row">
-                <label for="workingfrom"  class="col-md-4 col-form-label text-md-right">{{ __('workingfrom') }}</label>
+                <label for="workingfrom"  class="col-md-4 col-form-label text-md-right">{{ __('Working From') }}</label>
 
                 <div class="col-md-6">
                     <input id="workingfrom" min= "1900" max = "2020" type="number" class="form-control @error('workingfrom') is-invalid @enderror" 
@@ -73,10 +73,10 @@
         </div>
         <div id="temp1">
             
-            </div>
-        <div class="row col-8 offset-5">
+        </div>
+        <div class="row col-8 offset-2">
             <label for="image" class="col-md-4 col-form-label">Upload Image (Optional)</label>
-            <input type="file", class= "form-control-file" id="image" name="image">
+            <div class="col-md-6"><input type="file", class= "form-control-file" id="image" name="image"></div>
 
             @error('image')
                 <span class="invalid-feedback" role="alert">
@@ -86,7 +86,7 @@
         
         </div>
             <div class="row pt-5 col-8 offset-5">
-            <div id = "btn1" class="btn btn-secondary "> Add past experience</div>
+            <div id = "btn1" class="btn btn-secondary"> Add past experience</div> &nbsp;&nbsp;
             <button class="btn btn-primary "> Add the new user</button>
             </div>
         <input type="hidden" id ="counter" name="counter" value = "0"></div>
@@ -102,7 +102,15 @@ $(document).ready(function(){
     var extend ='<div>'+
             '<div class="col-8 offset-2">'+
                 '<div class="form-group row">'+
-                    '<label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('jobtitle') }}</label>'+
+                    '<label for="PreviousEmployer" class="col-md-4 col-form-label text-md-right">{{ __('Previous Employer') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="PreviousEmployer" type="text"  name="previousemployer'+(iter-1).toString()+'" required autocomplete="PreviousEmployer" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('Job Title') }}</label>'+
                     '<div class="col-md-6">'+
                         '<input id="jobtitle" type="text"  name="jobtitle'+(iter-1).toString()+'"  required autocomplete="jobtitle" autofocus>'+
                     '</div>'+
@@ -110,7 +118,7 @@ $(document).ready(function(){
             '</div>'+
             '<div class="col-8 offset-2">'+
                 '<div class="form-group row">'+
-                    '<label for="workingfrom" class="col-md-4 col-form-label text-md-right">{{ __('workingfrom') }}</label>'+
+                    '<label for="workingfrom" class="col-md-4 col-form-label text-md-right">{{ __('Working From') }}</label>'+
                     '<div class="col-md-6">'+
                         '<input id="workingfrom" type="number" min= "1900" max = "2020" name="workingfrom'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
                     '</div>'+
@@ -118,7 +126,7 @@ $(document).ready(function(){
             '</div>'+
             '<div class="col-8 offset-2">'+
                 '<div class="form-group row">'+
-                    '<label for="workedtill" class="col-md-4 col-form-label text-md-right">{{ __('workedtill') }}</label>'+
+                    '<label for="workedtill" class="col-md-4 col-form-label text-md-right">{{ __('Worked Till') }}</label>'+
                     '<div class="col-md-6">'+
                         '<input id="workedtill" type="number" min= "1900" max = "2020" name="workedtill'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
                     '</div>'+

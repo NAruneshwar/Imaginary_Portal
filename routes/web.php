@@ -29,7 +29,7 @@ Route::post('/new_emp','emp_userController@store');
 
 Route::get('/emp_users/{user}/edit','emp_userController@edit_user');
 
-Route::patch('/emp_users/{user}', 'emp_userController@update');
+Route::patch('/emp_users/{user}/update', 'emp_userController@update');
 
 Route::post('/emp_users/delete/{user}', 'emp_userController@delete');
 

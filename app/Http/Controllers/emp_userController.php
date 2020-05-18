@@ -15,7 +15,6 @@ class emp_userController extends Controller
     public function user_details($user)
     {
         $cur_res = \DB::table('emp_users')->where('u_id',$user)->first();
-        // dd($result);       
         $old_res = \DB::table('past_histories')->where('u_id',$user)->get();
 
         return view('emp_user', [
@@ -30,14 +29,14 @@ class emp_userController extends Controller
     }
 
     public function store()
-    {
-        $data = request()->validate([
-            'name' => 'required',
-            'currentemployer' => 'required',
-            'jobtitle' => 'required',
-            'workingfrom' => 'required',
-            'image' => ['image'],
-        ]);
+    {   $data = request();
+        // $data = request()->validate([
+        //     'name' => 'required',
+        //     'currentemployer' => 'required',
+        //     'jobtitle' => 'required',
+        //     'workingfrom' => 'required',
+        //     'image' => ['image'],
+        // ]);
         if(isset($data["image"]))
         {
             $imagepath = request('image')->store('Images','public');
@@ -56,6 +55,14 @@ class emp_userController extends Controller
                 'img_path' => $imagepath]);
 
         }
+        if($data['counter']>0){
+            for($k=1;$k<=$data["counter"];$k++){
+                $str = strval($k);
+                $old_job = \DB::table('past_histories')->insertGetId(
+                    ['u_id' => $id, 'org_name' => $data['previousemployer'.$str], 'jobtitle' => $data['jobtitle'.$str], 'fdate' => $data['workingfrom'.$str], 'edate' => $data['workedtill'.$str]
+                    ]);
+            }
+        }
         return redirect('/home');
     }
 
@@ -71,14 +78,14 @@ class emp_userController extends Controller
 
     public function update($user)
     {
-        $data = request()->validate([
-            'name' => 'required',
-            'currentemployer' => 'required',
-            'jobtitle' => 'required',
-            'workingfrom' => 'required',
-            'image' => ['image'],
-        ]);
-
+        $data = request();
+        // //$data = request()->validate([
+        //     'name' => 'required',
+        //     'currentemployer' => 'required',
+        //     'jobtitle' => 'required',
+        //     'workingfrom' => 'required',
+        //     'image' => ['image'],
+        // ]);
         if(isset($data["image"]))
         {
             $imagepath = request('image')->store('Images','public');
@@ -101,12 +108,23 @@ class emp_userController extends Controller
                             'fdate'=>$data['workingfrom']
                             ]);
         }
+        $delete_old = \DB::table('past_histories')
+                    ->where('u_id',$user)->delete();
 
+        for ($k=1; $k<=$data['counter'];$k++){
+            $str=strval($k);
+            $past_updated = \DB::table('past_histories')
+                ->where('u_id',$user)
+                ->insertGetId(['u_id' => $user, 'org_name' => $data['previousemployer'.$str],
+                         'jobtitle' => $data['jobtitle'.$str], 'fdate' => $data['workingfrom'.$str], 
+                         'edate' => $data['workedtill'.$str]
+                ]);
+        }
         return redirect('/home');
     }
 
     public function delete($user)
-    {
+    {   
         $deleted = \DB::table('emp_users')->where('u_id',$user)->delete();
         $deleted_old_jobs = \DB::table('past_histories')->where('u_id',$user)->delete();
         return redirect('/home');
