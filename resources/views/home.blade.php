@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <a href="/new_emp/create">Add new employee details </a>
+        <a href="/new_emp/create">Add new Employee </a>
     </div>
     @foreach($all_users as $eachuser)
     <div class="row justify-content-left">
@@ -22,7 +22,7 @@
                 <div class="pt-1">Job Title: {{$eachuser->jobtitle}}</div>   
                 <div class="pt-1">Working From: {{$eachuser->fdate}}</div> 
                 <div class="pt-4">
-                <a href="/emp_users/{{$eachuser->u_id}}/edit">edit the details </a>    
+                <a href="/emp_users/{{$eachuser->u_id}}/edit">Edit Details </a>    
                 </div>         
             </div>
         </div>

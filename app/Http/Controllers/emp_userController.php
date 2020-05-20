@@ -77,7 +77,7 @@ class emp_userController extends Controller
     }
 
     public function update($user)
-    {
+    {   
         $data = request();
         // //$data = request()->validate([
         //     'name' => 'required',
@@ -119,7 +119,17 @@ class emp_userController extends Controller
                          'jobtitle' => $data['jobtitle'.$str], 'fdate' => $data['workingfrom'.$str], 
                          'edate' => $data['workedtill'.$str]
                 ]);
-        }
+        }        
+
+        for ($k=1; $k<=$data['counter2'];$k++){
+            $str=strval($k);
+            $past_updated = \DB::table('past_histories')
+                ->where('u_id',$user)
+                ->insertGetId(['u_id' => $user, 'org_name' => $data['previousemployernew'.$str],
+                            'jobtitle' => $data['jobtitlenew'.$str], 'fdate' => $data['workingfromnew'.$str], 
+                            'edate' => $data['workedtillnew'.$str]
+                ]);
+            }
         return redirect('/home');
     }
 

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 @section('content')
 <div class="container">
@@ -9,7 +10,7 @@
 
         <div class="row" allign="center" >
             <div class="col-3 p-5">
-                <img src="/storage/{{$cur_res->img_path}}" width="300" height="300"></img>
+            <img src="/storage/{{($cur_res->img_path!='NULL') ? $cur_res->img_path: 'Images/3puvO91rzfFHJuXIpO1dKQ0TyMqluB6vRzAmHekK.png'}}" width="300" height="300"></img>
             </div>
         <div class="col-8 pt-5">
             <div class="col-8 offset-2">
@@ -148,6 +149,9 @@
                 </div>
             </div>
             @endforeach
+            
+            <div id="temp1">
+            </div>
 
             <div class="row col-8 offset-5">
                 <label for="image" class="col-md-5 col-form-label">Upload Image (Optional)</label>
@@ -160,8 +164,10 @@
                 @enderror
             </div>
             <input type="hidden" id ="counter" name="counter" value = "{{$index}}"></div>
+            <input type="hidden" id ="counter2" name="counter2" value = "0"></div>
 
             <div class="row pt-5 col-8 offset-5">
+            <div id = "btn1" class="btn btn-secondary"> Add past experience</div> &nbsp;&nbsp;
             <button class="btn btn-primary "> Edit the current user</button>
             </div>
         </div>
@@ -170,3 +176,52 @@
   
 </div>
 @endsection
+
+
+<script>
+$(document).ready(function(){
+    var iter = 1;
+  $("#btn1").click(function(){
+    iter++;
+    var extend ='<div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="PreviousEmployer" class="col-md-4 col-form-label text-md-right">{{ __('Previous Employer') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="PreviousEmployer" type="text"  name="previousemployernew'+(iter-1).toString()+'" required autocomplete="PreviousEmployer" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="jobtitle" class="col-md-4 col-form-label text-md-right">{{ __('Job Title') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="jobtitle" type="text"  name="jobtitlenew'+(iter-1).toString()+'"  required autocomplete="jobtitle" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="workingfrom" class="col-md-4 col-form-label text-md-right">{{ __('Working From') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="workingfrom" type="number" min= "1900" max = "2020" name="workingfromnew'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="col-8 offset-2">'+
+                '<div class="form-group row">'+
+                    '<label for="workedtill" class="col-md-4 col-form-label text-md-right">{{ __('Worked Till') }}</label>'+
+                    '<div class="col-md-6">'+
+                        '<input id="workedtill" type="number" min= "1900" max = "2020" name="workedtillnew'+(iter-1).toString()+'" required autocomplete="workingfrom" autofocus>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '</div> <div id= "temp'+iter+'"</div>';
+            var tag ='temp'+(iter-1).toString();
+            document.getElementById(tag).innerHTML= extend;
+            var count = document.getElementById('counter2');
+            count.value = (iter-1).toString();
+        });
+});
+
+</script>

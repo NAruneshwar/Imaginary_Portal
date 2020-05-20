@@ -34,3 +34,5 @@ Route::patch('/emp_users/{user}/update', 'emp_userController@update');
 Route::post('/emp_users/delete/{user}', 'emp_userController@delete');
 
 Route::get('/WPAPI','APIController@api_call');
+
+Route::get('/WPAPI/{user}','APIController@user_details');
