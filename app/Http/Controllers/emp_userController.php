@@ -48,7 +48,7 @@ class emp_userController extends Controller
             );
         }   
         else{
-            $imagepath="NULL";
+            $imagepath="Images/srVlseUJgMZVGUsiYA6CLHzNK71YWyX7ZzMx8WxJ.png";
             $id = \DB::table('emp_users')->insertGetId(
                 ['name' => $data['name'], 'jobtitle' => $data['jobtitle'], 
                 'org_name' => $data['currentemployer'], 'fdate' => $data['workingfrom'],
